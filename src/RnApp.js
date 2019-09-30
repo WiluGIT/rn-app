@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Button } from 'react-native';
 import {connect} from 'react-redux';
 
 import PlaceInput from './components/PlaceInput/PlaceInput';
@@ -28,6 +28,7 @@ class RnApp extends Component {
 
     return (
       <View style={styles.container}>
+        <Button title='siema' onPress={()=> this.props.navigation.navigate('Auth')}/>
         <PlaceDetail selectedPlace={this.props.selectedPlace} onItemDeleted={this.placeDeletedHandler} onModalClosed={this.ModalClosedHandler} />
         <PlaceInput onPlaceAdded={this.placeAddedHandler} />   
         <PlaceList places={this.props.places} onItemSelected={this.placeSelectedHandler} />   
