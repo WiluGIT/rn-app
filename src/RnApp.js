@@ -1,12 +1,19 @@
 import React, {Component} from 'react';
 import { StyleSheet, View, Button } from 'react-native';
 import {connect} from 'react-redux';
-
-import PlaceInput from './components/PlaceInput/PlaceInput';
-import PlaceList from './components/PlaceList/PlaceList';
-import PlaceDetail from './components/PlaceDetail/PlaceDetail';
 import {addPlace, deletePlace, selectPlace, deselectPlace} from '../store/actions/index';
 
+import { createAppContainer } from 'react-navigation';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
+import FindPlaceScreen from '../screens/FindPlace/FindPlace';
+import SharePlaceScreen from '../screens/SharePlace/SharePlace';
+
+
+const TabNavigator = createBottomTabNavigator({
+  SharePlace: SharePlaceScreen,
+  FindPlace: FindPlaceScreen,
+});
+const AppContainer = createAppContainer(TabNavigator);
 
 class RnApp extends Component {
 
@@ -27,12 +34,7 @@ class RnApp extends Component {
   render(){
 
     return (
-      <View style={styles.container}>
-        <Button title='siema' onPress={()=> this.props.navigation.navigate('Auth')}/>
-        <PlaceDetail selectedPlace={this.props.selectedPlace} onItemDeleted={this.placeDeletedHandler} onModalClosed={this.ModalClosedHandler} />
-        <PlaceInput onPlaceAdded={this.placeAddedHandler} />   
-        <PlaceList places={this.props.places} onItemSelected={this.placeSelectedHandler} />   
-      </View>
+        <AppContainer/>
     );
   }
 

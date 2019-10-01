@@ -5,8 +5,9 @@ import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
+import { createBottomTabNavigator } from 'react-navigation-tabs';
 
-import AuthScreen from './screens/Auth/Auth'
+import AuthScreen from './screens/Auth/Auth';
 
 const store = configureStore();
 
@@ -15,9 +16,10 @@ const RootStack = createStackNavigator({
   Auth: AuthScreen,
 },
 {
-  initialRouteName: 'Home',
+  initialRouteName: 'Auth',
 }
 );
+
 
 const AppContainer = createAppContainer(RootStack);
 
