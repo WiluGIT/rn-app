@@ -9,7 +9,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import FindPlaceScreen from '../screens/FindPlace/FindPlace';
 import SharePlaceScreen from '../screens/SharePlace/SharePlace';
 import AuthScreen from '../screens/Auth/Auth';
-import placeDetailScreen from '../screens/PlaceDetail/PlaceDetail'
+import PlaceDetail from '../screens/PlaceDetail/PlaceDetail'
 
 const HomeStack = createStackNavigator({
   FindPlace:{
@@ -19,7 +19,7 @@ const HomeStack = createStackNavigator({
     }
 
   } ,
-  Place: placeDetailScreen, 
+  Place: PlaceDetail, 
 
 },
 {
