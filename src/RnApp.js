@@ -14,9 +14,10 @@ import placeDetailScreen from '../screens/PlaceDetail/PlaceDetail'
 const HomeStack = createStackNavigator({
   FindPlace:{
     screen:FindPlaceScreen,
-    navigationOptions:({navigation}) => ({
-      title:'ELO'
-    })
+    navigationOptions: {
+      title: "Find Place"
+    }
+
   } ,
   Place: placeDetailScreen, 
 

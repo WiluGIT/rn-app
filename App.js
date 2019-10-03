@@ -11,8 +11,22 @@ import RnApp from './src/RnApp';
 const store = configureStore();
 
 const RootStack = createStackNavigator({
-  Home: RnApp,
-  Auth: AuthScreen,
+  Home: {
+    screen: RnApp,
+    navigationOptions: {
+      headerLeft: null,
+      gesturesEnabled: false,
+      headerBackTitle: null,
+      header: null
+    }
+  },
+  Auth: {
+    screen: AuthScreen,
+    navigationOptions: {
+      title: 'Login'
+    }
+
+  }
 },
 {
   initialRouteName: 'Auth',
