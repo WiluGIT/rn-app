@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import { StyleSheet, View } from 'react-native';
-import RnApp from './src/RnApp';
 import {Provider} from 'react-redux';
 import configureStore from './store/configureStore';
 import { createAppContainer } from 'react-navigation';
@@ -8,7 +7,7 @@ import { createStackNavigator } from 'react-navigation-stack';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
 
 import AuthScreen from './screens/Auth/Auth';
-
+import RnApp from './src/RnApp';
 const store = configureStore();
 
 const RootStack = createStackNavigator({

@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, FlatList} from 'react-native';
 
 import ListItem from '../ListItem/ListItem';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const placeList = props =>{
 
@@ -9,12 +10,12 @@ const placeList = props =>{
     style={styles.listContainer}
     data={props.places}   
     renderItem={(info) => (
-        <ListItem 
+    <ListItem 
         placeName={info.item.name} 
         placeImage={info.item.image}
         onItemPressed={() => props.onItemSelected(info.item.key)}
     />
-     
+
     )} 
     />
 };

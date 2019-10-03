@@ -1,23 +1,15 @@
 import React from 'react';
-import {Modal, View, Image, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
+import {View, Image, Text, Button, StyleSheet, TouchableOpacity} from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 
-const placeDetail = props =>{
-    let modalContent=null;
-
-    if(props.selectedPlace){
-        modalContent=(
-            <View>
-                <Image source ={props.selectedPlace.image} style={styles.placeImage}/>
-                <Text style={styles.placeName}>{props.selectedPlace.name}</Text>
-            </View>
-        );
-    }
-
+const placeDetailScreen = props =>{
+    let params = props.navigation.state.params;
     return(
-    <Modal visible={props.selectedPlace !== null} animationType="slide">
-        <View style={styles.modalContainer}>
-            {modalContent}
+        <View style={styles.container}>
+            <View>
+                <Image source ={params.image} style={styles.placeImage}/>
+                <Text style={styles.placeName}>{params.name}</Text>
+            </View>
             <View>
                 <TouchableOpacity onPress={props.onItemDeleted}>
                     <View style={styles.deleteButton}>
@@ -28,14 +20,12 @@ const placeDetail = props =>{
                 <Button title="Close" onPress={props.onModalClosed}/>
             </View>
         </View>
-    </Modal>
-
     );
     
 };
 
 const styles= StyleSheet.create({
-    modalContainer:{
+    container:{
         margin:22
     },
     placeImage:{
@@ -52,4 +42,4 @@ const styles= StyleSheet.create({
   }
 });
 
-export default placeDetail;
+export default placeDetailScreen;

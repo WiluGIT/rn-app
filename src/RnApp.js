@@ -5,15 +5,34 @@ import {addPlace, deletePlace, selectPlace, deselectPlace} from '../store/action
 
 import { createAppContainer } from 'react-navigation';
 import { createBottomTabNavigator } from 'react-navigation-tabs';
+import { createStackNavigator } from 'react-navigation-stack';
 import FindPlaceScreen from '../screens/FindPlace/FindPlace';
 import SharePlaceScreen from '../screens/SharePlace/SharePlace';
+import AuthScreen from '../screens/Auth/Auth';
+import placeDetailScreen from '../screens/PlaceDetail/PlaceDetail'
 
+const HomeStack = createStackNavigator({
+  FindPlace:{
+    screen:FindPlaceScreen,
+    navigationOptions:({navigation}) => ({
+      title:'ELO'
+    })
+  } ,
+  Place: placeDetailScreen, 
 
-const TabNavigator = createBottomTabNavigator({
-  SharePlace: SharePlaceScreen,
-  FindPlace: FindPlaceScreen,
+},
+{
+  initialRouteName: 'FindPlace',
 });
+const TabNavigator = createBottomTabNavigator({
+  FindPlace: {
+    screen: HomeStack,
+  },
+  SharePlace: SharePlaceScreen,
+});
+
 const AppContainer = createAppContainer(TabNavigator);
+
 
 class RnApp extends Component {
 
@@ -34,7 +53,7 @@ class RnApp extends Component {
   render(){
 
     return (
-        <AppContainer/>
+        <AppContainer />
     );
   }
 
