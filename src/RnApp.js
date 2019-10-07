@@ -17,12 +17,7 @@ import IconButton from '../src/components/IconButton';
 const HomeStack = createStackNavigator({
   FindPlace:{
     screen:FindPlaceScreen,
-    navigationOptions:({navigation})=>({
-      drawerLabel: 'KURWAA',
-      drawerIcon: ({tintColor})=>(
-        <Ionicons size={30} name='ios-trash' color='blue'/>
-      ),
-      
+    navigationOptions:({navigation})=>({  
       headerLeft: <IconButton  onPressMenu={()=>navigation.openDrawer()} />
     })
   } ,
@@ -42,9 +37,12 @@ const DrawerNav = createDrawerNavigator({
   },
   Drawer:{
     screen: SideDrawer,
-    navigationOptions:{
-      drawerLabel:'Drawer'
-    }
+    navigationOptions:({navigation})=>({
+      drawerLabel: 'Side Drawer',
+     
+      
+      headerLeft: <IconButton  onPressMenu={()=>navigation.openDrawer()} />
+    })
   },
   
 },
@@ -58,10 +56,26 @@ const DrawerNav = createDrawerNavigator({
 const TabNavigator = createBottomTabNavigator({
   FindPlace: {
     screen: DrawerNav,
+    
   },
   SharePlace: SharePlaceScreen,
 },
 {
+  defaultNavigationOptions:({navigation}) => ({
+    tabBarIcon: ({focused, horizontal,tintColor})=>{
+      const {routeName} = navigation.state;
+      let IconComponent = Ionicons;
+      let iconName;
+      if(routeName==='FindPlace'){
+        iconName='md-map';
+        
+      }else if(routeName==='SharePlace'){
+        iconName='md-share-alt';
+      }
+
+      return <IconComponent name={iconName} size={25} color={tintColor} />
+    },
+  }),
   initialRouteName: 'FindPlace'
 }
 );
