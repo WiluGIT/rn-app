@@ -8,16 +8,23 @@ import { createBottomTabNavigator } from 'react-navigation-tabs';
 import { createStackNavigator } from 'react-navigation-stack';
 import FindPlaceScreen from '../screens/FindPlace/FindPlace';
 import SharePlaceScreen from '../screens/SharePlace/SharePlace';
-import AuthScreen from '../screens/Auth/Auth';
-import PlaceDetail from '../screens/PlaceDetail/PlaceDetail'
+import PlaceDetail from '../screens/PlaceDetail/PlaceDetail';
+import { createDrawerNavigator } from 'react-navigation-drawer';
+import SideDrawer from '../screens/SideDrawer/SideDrawer';
+import { Ionicons } from '@expo/vector-icons';
+import IconButton from '../src/components/IconButton';
 
 const HomeStack = createStackNavigator({
   FindPlace:{
     screen:FindPlaceScreen,
-    navigationOptions: {
-      title: "Find Place"
-    }
-
+    navigationOptions:({navigation})=>({
+      drawerLabel: 'KURWAA',
+      drawerIcon: ({tintColor})=>(
+        <Ionicons size={30} name='ios-trash' color='blue'/>
+      ),
+      
+      headerLeft: <IconButton  onPressMenu={()=>navigation.openDrawer()} />
+    })
   } ,
   Place: PlaceDetail, 
 
@@ -25,12 +32,39 @@ const HomeStack = createStackNavigator({
 {
   initialRouteName: 'FindPlace',
 });
+
+const DrawerNav = createDrawerNavigator({
+  Find:{
+    screen: HomeStack,
+    navigationOptions:{
+      drawerLabel: 'Home'
+    }
+  },
+  Drawer:{
+    screen: SideDrawer,
+    navigationOptions:{
+      drawerLabel:'Drawer'
+    }
+  },
+  
+},
+{
+  drawerPosition:'left',
+  initialRouteName: 'Find'
+}
+
+);
+
 const TabNavigator = createBottomTabNavigator({
   FindPlace: {
-    screen: HomeStack,
+    screen: DrawerNav,
   },
   SharePlace: SharePlaceScreen,
-});
+},
+{
+  initialRouteName: 'FindPlace'
+}
+);
 
 const AppContainer = createAppContainer(TabNavigator);
 
