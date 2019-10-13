@@ -38,7 +38,7 @@ const DrawerNav = createDrawerNavigator({
   Drawer:{
     screen: SideDrawer,
     navigationOptions:({navigation})=>({
-      drawerLabel: 'Side Drawer',
+      drawerLabel: 'Log Out',
      
       
       headerLeft: <IconButton  onPressMenu={()=>navigation.openDrawer()} />
